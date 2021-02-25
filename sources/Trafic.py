@@ -112,4 +112,4 @@ class Trafic():
         # Compute
         output = self.compute()
         # Print
-        self.printFile("result.txt", output)
+        self.printFile(f"{args[1][:-4]}_result.txt", output)
