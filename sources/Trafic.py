@@ -6,6 +6,8 @@
 #                                         #
 ###########################################
 
+from sources.Car import Car
+
 
 class Trafic():
 
