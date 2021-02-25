@@ -16,7 +16,7 @@ class Trafic():
     """
 
     def __init__(self):
-        self._n = 0
+        self._info = 0
         self._car = None
         self._traficLight = None
         self._street = None
@@ -31,8 +31,14 @@ class Trafic():
                 print(f"\"{filename}\" no such file.")
                 exit(84)
 
+        def parseGlobalInfo(infos: str) -> dict:
+            elems = [elem for elem in infos.split()]
+            return {"d": elems[0], "i": elems[1], "s": elems[2], "v": elems[3], "f": elems[4]}
+
         fileContent = getContent(filename)
         # PARSE BELOW
+        self._info = parseGlobalInfo(fileContent[0])
+
 
     def run(self, args: list) -> None:
 
