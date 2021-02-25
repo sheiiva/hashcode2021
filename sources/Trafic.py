@@ -8,7 +8,7 @@
 
 from sources.Car import Car
 from sources.Street import Street
-from sources.TraficLight import TraficLight
+from sources.Intersection import Intersection, INCOME, OUTCOME
 
 
 class Trafic():
@@ -51,11 +51,17 @@ class Trafic():
                 self._car.append(Car(int(carInfos[0]), carInfos[1:], j))
                 j += 1
 
-        def parseIntersectionInfo(nbIntersection: int) -> None:
+        def parseIntersectionInfo(nbIntersection: int, streets: list) -> None:
 
             for i in range(nbIntersection):
-                self._intersection.append(TraficLight(i))
+                self._intersection.append(Intersection(i))
 
+            for street in streets:
+                for i in range(nbIntersection):
+                    if street._end == self._intersection[i]._id:
+                        self._intersection[i]._streets.append([street._name, INCOME])
+                    elif street._begin == self._intersection[i]._id:
+                        self._intersection[i]._streets.append([street._name, OUTCOME])                        
 
         fileContent = getContent(filename)
         # Parse general informations
@@ -65,7 +71,7 @@ class Trafic():
         # Parse cars informations
         parseCarInfo(self._info["s"], self._info["v"], fileContent)
         # Init trafic lights
-        parseIntersectionInfo(self._info["i"])
+        parseIntersectionInfo(self._info["i"], self._street)
 
 
 

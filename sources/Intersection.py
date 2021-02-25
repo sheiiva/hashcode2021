@@ -6,8 +6,10 @@
 #                                         #
 ###########################################
 
+INCOME = 0
+OUTCOME = 1
 
-class TraficLight():
+class Intersection():
 
     """
     TraficLight class that allows computation and output printing.
@@ -15,3 +17,4 @@ class TraficLight():
 
     def __init__(self, id: int):
         self._id = id
+        self._streets = []
