@@ -1,0 +1,19 @@
+###########################################
+#                 HASH CODE               #
+###########################################
+#                                         #
+# Corentin COUTRET-ROZET and Hugo LACHKAR #
+#                                         #
+###########################################
+
+*__pycache__
+*vscode*
+tmp
+
+# PYTESTS
+htmlcov
+.coverage
+.pytest_cache
+
+# BINARY
+hashcode
