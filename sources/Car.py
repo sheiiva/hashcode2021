@@ -13,7 +13,8 @@ class Car():
     Car class that allows car informations.
     """
 
-    def __init__(self, nbStreets: int, path: list):
+    def __init__(self, nbStreets: int, path: list, id: int):
+        self._id = id
         self._path = self.parsePath(path)
         self._position = path[0] if len(path) > 0 else 0
         self._nbStreets = nbStreets

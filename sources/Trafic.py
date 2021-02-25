@@ -19,7 +19,7 @@ class Trafic():
     def __init__(self):
         self._info = 0
         self._car = []
-        self._traficLight = None
+        self._traficLight = []
         self._street = []
 
     def parse(self, filename: str) -> None:
@@ -44,10 +44,11 @@ class Trafic():
 
         def parseCarInfo(nbStreets: int, nbCars: int, infos: list) -> None:
 
+            j = 0
             for i in range(-nbCars, 0):
                 carInfos = [elem for elem in infos[i].split()]
-                self._car.append(Car(int(carInfos[0]), carInfos[1:]))
-                print(self._car[-1]._position)
+                self._car.append(Car(int(carInfos[0]), carInfos[1:], j))
+                j += 1
 
 
         fileContent = getContent(filename)
@@ -57,6 +58,8 @@ class Trafic():
         parseStreetInfo(self._info["s"], fileContent)
         # Parse cars informations
         parseCarInfo(self._info["s"], self._info["v"], fileContent)
+        # Init trafic lights
+
 
 
     def run(self, args: list) -> None:
