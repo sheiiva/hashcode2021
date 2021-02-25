@@ -73,7 +73,15 @@ class Trafic():
         # Init trafic lights
         parseIntersectionInfo(self._info["i"], self._street)
 
+    def compute(self):
 
+        return []
+
+    def printFile(self, filename: str, output: str) -> None:
+
+        with open(filename, 'w') as f:
+            for line in output:
+                f.write(line)
 
     def run(self, args: list) -> None:
 
@@ -84,4 +92,6 @@ class Trafic():
         # Parse input arguments
         self.parse(args[1])
         # Compute
+        output = self.compute()
         # Print
+        self.printFile("result.txt", output)
