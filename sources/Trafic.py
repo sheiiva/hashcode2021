@@ -8,6 +8,7 @@
 
 from sources.Car import Car
 from sources.Street import Street
+from sources.TraficLight import TraficLight
 
 
 class Trafic():
@@ -17,9 +18,9 @@ class Trafic():
     """
 
     def __init__(self):
-        self._info = 0
+        self._info = {}
         self._car = []
-        self._traficLight = []
+        self._intersection = []
         self._street = []
 
     def parse(self, filename: str) -> None:
@@ -50,6 +51,11 @@ class Trafic():
                 self._car.append(Car(int(carInfos[0]), carInfos[1:], j))
                 j += 1
 
+        def parseIntersectionInfo(nbIntersection: int) -> None:
+
+            for i in range(nbIntersection):
+                self._intersection.append(TraficLight(i))
+
 
         fileContent = getContent(filename)
         # Parse general informations
@@ -59,6 +65,7 @@ class Trafic():
         # Parse cars informations
         parseCarInfo(self._info["s"], self._info["v"], fileContent)
         # Init trafic lights
+        parseIntersectionInfo(self._info["i"])
 
 
 
