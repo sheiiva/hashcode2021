@@ -75,13 +75,31 @@ class Trafic():
 
     def compute(self):
 
-        return []
+        def countIncomingStreet(streets):
+
+            counter = 0
+            for street in streets:
+                if street[1] == INCOME:
+                    counter += 1
+            return counter
+
+        res = []
+
+        res.append(self._info["i"])
+        for intersection in self._intersection:
+            res.append(intersection._id)
+            res.append(countIncomingStreet(intersection._streets))
+            for street in intersection._streets:
+                if street[1] == INCOME:
+                    res.append(f"{street[0]} 2")
+
+        return res
 
     def printFile(self, filename: str, output: str) -> None:
 
         with open(filename, 'w') as f:
             for line in output:
-                f.write(line)
+                f.write(f"{str(line)}\n")
 
     def run(self, args: list) -> None:
 
